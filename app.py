@@ -23,8 +23,10 @@ def allowed_file(filename):
 def get_upload_file(file):
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'])
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # filepath = os.path.join(app.config['UPLOAD_FOLDER'])
+        filepath = app.config['UPLOAD_FOLDER']
+        # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        file.save((app.config['UPLOAD_FOLDER'], filename))
         flash(f'File uploaded successfully at {filepath}/{filename}')
         return redirect(request.url)
 
