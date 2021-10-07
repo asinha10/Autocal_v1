@@ -6,7 +6,7 @@ import cal_operations as co
 
 ALLOWED_EXTENSIONS = {'csv'}
 #UPLOAD_FOLDER = pathlib.Path.cwd().joinpath('definitions')
-UPLOAD_FOLDER = '/autocal/definitions/'
+UPLOAD_FOLDER = '/azstorage08/autocal/definitions/'
 
 
 app = Flask(__name__)
