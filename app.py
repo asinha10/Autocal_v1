@@ -5,8 +5,9 @@ import os
 import cal_operations as co
 
 ALLOWED_EXTENSIONS = {'csv'}
-UPLOAD_FOLDER = pathlib.Path.cwd().joinpath('definitions')
-#UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__))
+#UPLOAD_FOLDER = pathlib.Path.cwd().joinpath('definitions')
+UPLOAD_FOLDER = '/autocal/definitions/'
+
 
 app = Flask(__name__)
 app.secret_key = 'secret'
