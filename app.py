@@ -3,11 +3,17 @@ from werkzeug.utils import secure_filename
 import pathlib
 import os
 import cal_operations as co
+from azure.storage.blob import ContainerClient
+
 
 ALLOWED_EXTENSIONS = {'csv'}
 #UPLOAD_FOLDER = pathlib.Path.cwd().joinpath('definitions')
-UPLOAD_FOLDER = '/azstorage08/autocal/definitions/'
+#UPLOAD_FOLDER = '/azstorage08/autocal/definitions/'
+UPLOAD_FOLDER = pathlib.Path.cwd().joinpath('definitions')
+connection_string = "DefaultEndpointsProtocol=https;AccountName=azstorage08;AccountKey=ZgLHvj8Jgx6mUpqz4qjCOcOALvxlapYkn2ueTKmj+XbWFOZ1OkV7T/hRyGYGAxM+H/MrD5kvP8yApwJxpNOMrw==;EndpointSuffix=core.windows.net"
+container_name = "autocal"
 
+blob_container_client = ContainerClient.from_connection_string(connection_string, container_name)
 
 app = Flask(__name__)
 app.secret_key = 'secret'
@@ -23,11 +29,12 @@ def allowed_file(filename):
 def get_upload_file(file):
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
-        # filepath = os.path.join(app.config['UPLOAD_FOLDER'])
-        filepath = app.config['UPLOAD_FOLDER']
-        # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        file.save((app.config['UPLOAD_FOLDER'], filename))
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'])
+        # filepath = app.config['UPLOAD_FOLDER']
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # file.save((app.config['UPLOAD_FOLDER'], filename))
         flash(f'File uploaded successfully at {filepath}/{filename}')
+
         return redirect(request.url)
 
     return redirect(request.url)
