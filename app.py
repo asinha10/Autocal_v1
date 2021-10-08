@@ -3,8 +3,6 @@ from werkzeug.utils import secure_filename
 import pathlib
 import os
 import cal_operations as co
-from azure.storage.blob import ContainerClient
-
 
 ALLOWED_EXTENSIONS = {'csv'}
 #UPLOAD_FOLDER = pathlib.Path.cwd().joinpath('definitions')
