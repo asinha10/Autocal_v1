@@ -10,10 +10,7 @@ ALLOWED_EXTENSIONS = {'csv'}
 #UPLOAD_FOLDER = pathlib.Path.cwd().joinpath('definitions')
 #UPLOAD_FOLDER = '/azstorage08/autocal/definitions/'
 UPLOAD_FOLDER = pathlib.Path.cwd().joinpath('definitions')
-connection_string = "DefaultEndpointsProtocol=https;AccountName=azstorage08;AccountKey=ZgLHvj8Jgx6mUpqz4qjCOcOALvxlapYkn2ueTKmj+XbWFOZ1OkV7T/hRyGYGAxM+H/MrD5kvP8yApwJxpNOMrw==;EndpointSuffix=core.windows.net"
-container_name = "autocal"
 
-blob_container_client = ContainerClient.from_connection_string(connection_string, container_name)
 
 app = Flask(__name__)
 app.secret_key = 'secret'
